@@ -1,1 +1,1 @@
-== Repository for support of algo-club activity
+# Repository for support of algo-club activity
