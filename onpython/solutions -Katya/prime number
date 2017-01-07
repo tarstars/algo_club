@@ -1,0 +1,18 @@
+def testcase(f, inp, outp):
+    received = f(inp)
+    if received == outp:
+        print("OK")
+    else: 
+        print("FAIL: EXPECTED", outp, "but received", received )
+    
+def is_prime(n):
+    for t in range(2, n):
+        if n % t==0:
+            return False
+    return True
+    
+testcase (is_prime, 7, True)
+testcase (is_prime, 4, False)
+testcase (is_prime, 15, False)
+testcase (is_prime, 23, True)
+
