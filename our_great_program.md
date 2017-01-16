@@ -105,7 +105,7 @@
  * разобрать ввод в терминал с esc-последовательностями
 
 * Мешанина:
-  * заменить inplace в массиве элементы на полусумму соседей -  https://github.com/rumary/algorithms/blob/master/inline_vector_mean.cpp  
+  * заменить inplace в массиве элементы на полусумму соседей (done) https://github.com/rumary/algorithms/blob/master/inline_vector_mean.cpp  
   * структуры с инвариантом:
     * стек с получением максимума
     * очередь с получением максимума
