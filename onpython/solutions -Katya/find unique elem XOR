@@ -1,0 +1,5 @@
+def find_unique(x):
+    ret=0
+    for t in x:
+        ret=ret^t
+    return ret

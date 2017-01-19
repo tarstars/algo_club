@@ -1,0 +1,17 @@
+x=[3,9,13,2,5,8,4]
+n=len(x)
+a=0
+b=n-1
+while b>0:
+    print(x)
+    max_el=x[0]
+    max_ind=a
+    for t in range(a,b):
+        if max_el<x[t]:
+            max_el=x[t]
+            max_ind=t
+    print('max_ind=', max_ind, 'max_el=', max_el, 'x=', x[b], 'b=', b)
+    if x[max_ind] > x[b]:
+        x[max_ind],x[b]=x[b],x[max_ind]
+    b=b-1
+print(x)
