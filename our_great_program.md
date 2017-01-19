@@ -32,6 +32,7 @@
   * leetcode.com
   * informatics.mccme.ru
   * e-maxx.ru/algo/
+  * https://www.quora.com/How-do-I-start-learning-or-strengthen-my-knowledge-of-data-structures-and-algorithms/answers/27366493 [ещё один перечень computer-science тем]
 
 # Доклады
   * Кучи:
