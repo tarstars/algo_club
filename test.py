@@ -7,4 +7,4 @@ elif a==b:
   print('числа равны')
 else: 
   print('max(a,b)=b')
-print('завершено')
+print('завершено!!!')
