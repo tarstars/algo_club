@@ -10,6 +10,8 @@
 
 [habrahabr](https://habrahabr.ru/company/yandex/blog/208034/)
 
+[Лекции Воронцова в ШАД](https://yandexdataschool.ru/edu-process/courses/machine-learning)
+
 
 # Занятие 1
 
