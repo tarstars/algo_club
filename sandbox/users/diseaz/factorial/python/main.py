@@ -3,9 +3,10 @@
 
 import functools
 
-n = int(input('Factorial of what: '))
+n = int(input())
 result = functools.reduce(
     lambda r, i: r * i,
     range(1, n + 1),
+    1
 )
 print (result)
