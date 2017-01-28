@@ -7,20 +7,25 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+    def _print(self, sep):
+        if not isinstance(sep, str):
+            raise ValueError("Separator must be a string, {} passed".format(type(sep)))
+
+        return sep.join(map(str, self.toPythonList()))
+
     def __str__(self):
-        rslt = str(self.val)
+        return self._print(' ')
 
-        while self.next:
-            rslt += " -> " + str(self.next.val)
-            self = self.next
-
-        return rslt
+    def prettyPrint(self):
+        return self._print(' -> ')
 
     def toPythonList(self):
         rslt = [self.val]
+        cur = self.next
 
-        while self.next:
-            rslt.append(self.val)
+        while cur:
+            rslt.append(cur.val)
+            cur = cur.next
 
         return rslt
 
@@ -28,7 +33,8 @@ class ListNode(object):
     def fromPythonList(xs):
         head = None
         prev = None
-        for x in reversed(xs):
+
+        for x in list(map(int, xs)):
             node = ListNode(x)
 
             if head is None:
@@ -41,12 +47,10 @@ class ListNode(object):
         return head
 
     @staticmethod
-    def fromString(s, sep=" ", reverse=False):
+    def fromString(s, sep=" "):
         """
         :param s:       string, representing the list
         :param sep:     separator string
-        :param reverse: pass True if number's most significant digit is the first one in the string
-
         :return: ListNode for list's head
 
         Example:
@@ -60,4 +64,4 @@ class ListNode(object):
         if not isinstance(sep, str):
             raise ValueError("Separator must be a string, {} passed".format(type(sep)))
 
-        return ListNode.fromPythonList([x for x in s.split(sep) if x])
+        return ListNode.fromPythonList(s.strip().split(sep))
