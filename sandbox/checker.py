@@ -28,6 +28,7 @@ for current_user in users:
 
         solutions_path = user_prefix + current_user + '/' + current_problem + '/'
         languages = [t[len(solutions_path):] for t in glob.glob(solutions_path + '*')]
+        languages = [t for t in languages if t in ['c++', 'python', 'go']]
         results[current_user][current_problem] = {}
         
         for current_suffix in dats_suffixes:
