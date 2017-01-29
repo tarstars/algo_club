@@ -2,6 +2,8 @@
  * питоновский модуль turtle
  * рекусия вообще и для рисования фракталов черепашкой в частности
  * питоновская база - while, for, if
+ * команды: 
+   * turtle.forward(), turtle.home(), turtle.clear(), turtle.circle(), turtle.color(), turtle.colormode(), turtle.begin_fill/end_fill(), turtle.up, turtle.down(),turtle.left(), turtle.right() 
 
 # Семинар 26 декабря
 * Биномиальные кучи (diseaz)
