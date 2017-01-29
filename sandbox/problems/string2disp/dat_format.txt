@@ -1,0 +1,3 @@
+screen_width	screen_height
+x_left_top (first 0) 		y_left_top (first 0)		rect_width 		rect_height		dot_or_dash(0 = '.', 1 = "-")
+screen_initial(array of "." and "-")
