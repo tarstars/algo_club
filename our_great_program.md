@@ -1,3 +1,8 @@
+# Семинар 16 января
+ * питоновский модуль turtle
+ * рекусия вообще и для рисования фракталов черепашкой в частности
+ * питоновская база - while, for, if
+
 # Семинар 26 декабря
 * Биномиальные кучи (diseaz)
 * Танцующие ссылки (tarstars)
@@ -32,6 +37,7 @@
   * leetcode.com
   * informatics.mccme.ru
   * e-maxx.ru/algo/
+  * https://www.quora.com/How-do-I-start-learning-or-strengthen-my-knowledge-of-data-structures-and-algorithms/answers/27366493 [ещё один перечень computer-science тем]
 
 # Доклады
   * Кучи:
@@ -105,7 +111,7 @@
  * разобрать ввод в терминал с esc-последовательностями
 
 * Мешанина:
-  * заменить inplace в массиве элементы на полусумму соседей
+  * заменить inplace в массиве элементы на полусумму соседей (done) https://github.com/rumary/algorithms/blob/master/inline_vector_mean.cpp  
   * структуры с инвариантом:
     * стек с получением максимума
     * очередь с получением максимума

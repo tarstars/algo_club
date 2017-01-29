@@ -1,0 +1,2 @@
+def my_max(a,b,x):
+    return max(((val,ind) for id, val in enumerate(x[a:b])))[1]
