@@ -53,6 +53,7 @@
  
  * [Курс для школьников](http://informatics.mccme.ru/course/view.php?id=156)
  * [Курс на сайте mccme](http://informatics.mccme.ru/) - Тыкаем на "изучение языка программировани". Дальше выбираем один из разделов "ввод-вывод", "условный оператор", "операторы цикла" и т.д. Внутри заходим в раздел "Теоретический материал: Python"
+ * [думать как програмёр](http://www.openbookproject.net/thinkcs/archive/python/thinkcspy3e_abandoned/ch03.html)
 
 # Порция 3
 * Питоновский модуль turtle:
@@ -69,14 +70,15 @@
 Питоновская база - цикл for, рекурсии
 * Пример программы: 
  1. выведет на экран прямоугольник с черной заливкой, длина каждой стороны прямоугольника - 50 пикселей
+   import turtle
    turtle.begin_fill()
    for t in range(4):
      turtle.forward(50)
      turtle.left(90)
    turtle.end_fill()
-  2.  рекурсивная функция, которая построит самовозвращающийся многоугольник   
-      def f(n,l):
-    if n==0:
+  2.  рекурсивная функция, которая построит сторону звёздочки Коха   
+    def f(n,l):
+      if n==0:
         turtle.forward(l)
         return
     f(n-1, l/3)
@@ -88,6 +90,4 @@
     f(n-1, l/3)
     
     
-# Ссылки по курсу
 
-(думать как програмёр)[http://www.openbookproject.net/thinkcs/archive/python/thinkcspy3e_abandoned/ch03.html]
