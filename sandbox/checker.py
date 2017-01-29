@@ -67,6 +67,11 @@ for current_user in users:
                 except:
                     print('check failed')
 
-print(results)
+for user, results_per_user in results.items():
+    print(user)
+    for problem, stats_for_user_problem in results_per_user.items():
+        print("\t", problem)
+        for language, result in stats_for_user_problem.items():
+            print("\t\t", language, result)
             
             

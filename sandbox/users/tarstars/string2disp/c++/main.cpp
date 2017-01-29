@@ -90,7 +90,6 @@ NiceFill(unsigned char *buffer, int w, int ltx, int lty, int rw, int rh, bool fi
       }
     }
   }
-
 }
 
 int main() {
