@@ -88,3 +88,6 @@
     f(n-1, l/3)
     
     
+# Ссылки по курсу
+
+(думать как програмёр)[http://www.openbookproject.net/thinkcs/archive/python/thinkcspy3e_abandoned/ch03.html]
