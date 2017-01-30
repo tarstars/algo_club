@@ -20,6 +20,8 @@
 
 [Что вы хотели знать про Пандас, но боялись](https://www.analyticsvidhya.com/blog/2015/07/11-steps-perform-data-analysis-pandas-python/)
 
+[Про переобучение](http://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html)
+
 
 # Занятие 1
 
