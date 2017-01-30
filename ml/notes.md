@@ -14,6 +14,8 @@
 
 [Лекции Соколова](https://github.com/rumary/ml-course-hse)
 
+[Слака](http://ods.ai)
+
 
 # Занятие 1
 
