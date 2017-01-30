@@ -57,6 +57,8 @@ for current_user in users:
                         except Exception:
                             pass
                         subprocess.run(['g++', '-std=c++11', program_prefix + '/main.cpp', '-o', 'prog'])
+                        open('prog')
+                        print('c++ compilation successfull')
                         program_instance = subprocess.Popen(['./prog'],
                                                             stdin=subprocess.PIPE,
                                                             stdout=subprocess.PIPE,
