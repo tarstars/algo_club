@@ -16,6 +16,8 @@
 
 [Слака](http://ods.ai)
 
+[Курсера](https://github.com/Coursera-machine-learning-data-analysis/course-materials)
+
 
 # Занятие 1
 
