@@ -12,6 +12,8 @@
 
 [Лекции Воронцова в ШАД](https://yandexdataschool.ru/edu-process/courses/machine-learning)
 
+[Лекции Соколова](https://github.com/rumary/ml-course-hse)
+
 
 # Занятие 1
 
