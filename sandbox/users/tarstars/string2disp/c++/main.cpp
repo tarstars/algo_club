@@ -64,29 +64,41 @@ BruteForceFill(BitMatrix *buffer, int ltx, int lty, int rw, int rh, bool set_to_
 
 void
 NiceFill(unsigned char *buffer, int w, int ltx, int lty, int rw, int rh, bool filler) {
-  if (ltx%8 != 0) {
-    unsigned char left_mask = 0;
-    for (int p = std::max(0, ltx % 8 - rw); p < ltx % 8; --p) {
-      left_mask |= 128 >> p;
+  int left_boundary_x = ltx;
+  int right_boundary_x = ltx + rw - 1;
+  if (left_boundary_x/8 == right_boundary_x / 8) {
+    int mask = 0;
+    for (int d = right_boundary_x % 8; d >= left_boundary_x %8; ++d) { // d - digit index
+      mask |= 1 << d;
     }
-    for (int p = lty; p <= lty + rh; ++p) {
-      if (filler) {
-	buffer[p*w + ltx/8] |= left_mask;
-      } else {
-	buffer[p*w + ltx/8] &= ~left_mask;
+    for (int p = lty; p < lty + rh; ++p) {
+      buffer[(lty + p) * w + ltx / 8] |= mask;
+    }
+  } else {
+    if (ltx%8 != 0) {
+      unsigned char left_mask = 0;
+      for (int p = std::max(0, ltx % 8 - rw); p < ltx % 8; --p) {
+	left_mask |= 128 >> p;
+      }
+      for (int p = lty; p <= lty + rh; ++p) {
+	if (filler) {
+	  buffer[p*w + ltx/8] |= left_mask;
+	} else {
+	  buffer[p*w + ltx/8] &= ~left_mask;
+	}
       }
     }
-  }
-  if ((ltx + rw) %8 != 0 && ltx / 8 != (ltx + rw) / 8) {
-    unsigned char right_mask = 0;
-    for (int p = ltx % 8; p > std::max(-1, ltx % 8 - rw); --p) {
-      right_mask |= 128 >> p;
-    }
-    for (int p = lty; p <= lty + rh; ++p) {
-      if (filler) {
-	buffer[p*w + ltx/8] |= right_mask;
-      } else {
-	buffer[p*w + ltx/8] &= ~right_mask;
+    if ((ltx + rw) %8 != 0 && ltx / 8 != (ltx + rw) / 8) {
+      unsigned char right_mask = 0;
+      for (int p = ltx % 8; p > std::max(-1, ltx % 8 - rw); --p) {
+	right_mask |= 128 >> p;
+      }
+      for (int p = lty; p <= lty + rh; ++p) {
+	if (filler) {
+	  buffer[p*w + ltx/8] |= right_mask;
+	} else {
+	  buffer[p*w + ltx/8] &= ~right_mask;
+	}
       }
     }
   }
@@ -100,7 +112,8 @@ int main() {
   std::cin >> ltx >> lty >> rw >> rh;
   std::cin >> set_to_it;
   BitMatrix BitField = LoadFromDotMinus(h, w, std::cin);
-  NiceFill(BitField.GetBuffer(), BitField.Width(), ltx, lty, rw, rh, set_to_it == 1);
+  // NiceFill(BitField.GetBuffer(), BitField.Width(), ltx, lty, rw, rh, set_to_it == 1);
+  BruteForceFill(&BitField, ltx, lty, rw, rh, set_to_it == 1);
   SaveAsDotMinus(std::cout, BitField);
   return 0;
 }

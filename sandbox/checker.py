@@ -1,7 +1,14 @@
 #!/usr/bin/python3
 
 import glob
+import os
 import subprocess
+
+def split_by_groups(s):
+    return [t for t in s.split() if t]
+
+def not_so_strict_compare(actual, expected):
+    return split_by_groups(actual) == split_by_groups(expected)
 
 user_prefix = 'users/'
 problem_prefix = 'problems/'
@@ -45,12 +52,17 @@ for current_user in users:
                                                             stdout=subprocess.PIPE,
                                                             universal_newlines = True)
                     elif current_language == 'c++':
+                        try:
+                            os.remove('prog')
+                        except Exception:
+                            pass
                         subprocess.run(['g++', '-std=c++11', program_prefix + '/main.cpp', '-o', 'prog'])
                         program_instance = subprocess.Popen(['./prog'],
                                                             stdin=subprocess.PIPE,
                                                             stdout=subprocess.PIPE,
                                                             universal_newlines = True)
                     elif current_language == 'go':
+                        os.remove('main')
                         subprocess.run(['go', 'build', program_prefix + '/main.go'])
                         program_instance = subprocess.Popen(['./main'],
                                                             stdin=subprocess.PIPE,
@@ -61,9 +73,11 @@ for current_user in users:
                         
                     output = program_instance.communicate(open(current_dat).read())[0]
                     expected = open(current_res).read()
-                    print('\toutput = "%s"'%output, ' expected = "%s"'%expected)
                     pre_final_results = results[current_user][current_problem]
-                    pre_final_results[current_language] = pre_final_results.get(current_language, True) and output == expected 
+                    test_result = not_so_strict_compare(output, expected)
+                    pre_final_results[current_language] = pre_final_results.get(current_language, True) and test_result
+                    if not test_result:
+                        print('\toutput = "%s"'%output, ' expected = "%s"'%expected)
                 except:
                     print('check failed')
 
