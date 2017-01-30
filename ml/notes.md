@@ -18,6 +18,8 @@
 
 [Курсера](https://github.com/Coursera-machine-learning-data-analysis/course-materials)
 
+[Что вы хотели знать про Пандас, но боялись](https://www.analyticsvidhya.com/blog/2015/07/11-steps-perform-data-analysis-pandas-python/)
+
 
 # Занятие 1
 
