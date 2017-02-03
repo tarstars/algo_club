@@ -47,7 +47,7 @@ for current_user in users:
                 try:
                     if current_language == 'python':
                         program = program_prefix + '/main.py'
-                        program_instance = subprocess.Popen(['/usr/bin/python3', program],
+                        program_instance = subprocess.Popen(['python3', program],
                                                             stdin=subprocess.PIPE,
                                                             stdout=subprocess.PIPE,
                                                             universal_newlines = True)
@@ -64,12 +64,20 @@ for current_user in users:
                                                             stdout=subprocess.PIPE,
                                                             universal_newlines = True)
                     elif current_language == 'go':
-                        os.remove('main')
-                        subprocess.run(['go', 'build', program_prefix + '/main.go'])
+                        print('\tcompile go program')
+                        try:
+                            os.remove('main')
+                        except Exception:
+                            pass
+                        source_path = program_prefix + '/main.go'
+                        print('source_path = ', source_path)
+                        subprocess.run(['go', 'build', source_path])
                         program_instance = subprocess.Popen(['./main'],
                                                             stdin=subprocess.PIPE,
                                                             stdout=subprocess.PIPE,
                                                             universal_newlines = True)
+                        if program_instance:
+                            print('program instance ready')
                     else:
                         raise NameError('language %s is not supported'%current_language)
                         
@@ -83,6 +91,9 @@ for current_user in users:
                 except:
                     print('check failed')
 
+for t in range(4):
+    print()
+                    
 for user, results_per_user in results.items():
     print(user)
     for problem, stats_for_user_problem in results_per_user.items():
