@@ -12,6 +12,16 @@
 
 [Лекции Воронцова в ШАД](https://yandexdataschool.ru/edu-process/courses/machine-learning)
 
+[Лекции Соколова](https://github.com/rumary/ml-course-hse)
+
+[Слака](http://ods.ai)
+
+[Курсера](https://github.com/Coursera-machine-learning-data-analysis/course-materials)
+
+[Что вы хотели знать про Пандас, но боялись](https://www.analyticsvidhya.com/blog/2015/07/11-steps-perform-data-analysis-pandas-python/)
+
+[Про переобучение](http://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html)
+
 
 # Занятие 1
 

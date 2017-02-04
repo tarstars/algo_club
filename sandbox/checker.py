@@ -1,7 +1,14 @@
 #!/usr/bin/python3
 
 import glob
+import os
 import subprocess
+
+def split_by_groups(s):
+    return [t for t in s.split() if t]
+
+def not_so_strict_compare(actual, expected):
+    return split_by_groups(actual) == split_by_groups(expected)
 
 user_prefix = 'users/'
 problem_prefix = 'problems/'
@@ -28,27 +35,70 @@ for current_user in users:
 
         solutions_path = user_prefix + current_user + '/' + current_problem + '/'
         languages = [t[len(solutions_path):] for t in glob.glob(solutions_path + '*')]
+        languages = [t for t in languages if t in ['c++', 'python', 'go']]
         results[current_user][current_problem] = {}
         
         for current_suffix in dats_suffixes:
             current_res = res_path + current_suffix
             current_dat = dat_path + current_suffix
             for current_language in languages:
-                program = solutions_path + current_language + '/main.py'
-                print ('check program ', program, ' with input ', current_dat, ' and output', current_res)
+                print ('check program ', current_problem, ' with input ', current_dat, ' and output', current_res)
+                program_prefix = solutions_path + current_language
                 try:
-                    program_instance = subprocess.Popen(['/usr/bin/python3', program],
-                                                        stdin=subprocess.PIPE,
-                                                        stdout=subprocess.PIPE,
-                                                        universal_newlines = True)
+                    if current_language == 'python':
+                        program = program_prefix + '/main.py'
+                        program_instance = subprocess.Popen(['python3', program],
+                                                            stdin=subprocess.PIPE,
+                                                            stdout=subprocess.PIPE,
+                                                            universal_newlines = True)
+                    elif current_language == 'c++':
+                        try:
+                            os.remove('prog')
+                        except Exception:
+                            pass
+                        subprocess.run(['g++', '-std=c++11', program_prefix + '/main.cpp', '-o', 'prog'])
+                        open('prog')
+                        print('c++ compilation successfull')
+                        program_instance = subprocess.Popen(['./prog'],
+                                                            stdin=subprocess.PIPE,
+                                                            stdout=subprocess.PIPE,
+                                                            universal_newlines = True)
+                    elif current_language == 'go':
+                        print('\tcompile go program')
+                        try:
+                            os.remove('main')
+                        except Exception:
+                            pass
+                        source_path = program_prefix + '/main.go'
+                        print('source_path = ', source_path)
+                        subprocess.run(['go', 'build', source_path])
+                        program_instance = subprocess.Popen(['./main'],
+                                                            stdin=subprocess.PIPE,
+                                                            stdout=subprocess.PIPE,
+                                                            universal_newlines = True)
+                        if program_instance:
+                            print('program instance ready')
+                    else:
+                        raise NameError('language %s is not supported'%current_language)
+                        
                     output = program_instance.communicate(open(current_dat).read())[0]
                     expected = open(current_res).read()
-                    print('\toutput = "%s"'%output, ' expected = "%s"'%expected)
                     pre_final_results = results[current_user][current_problem]
-                    pre_final_results[current_language] = pre_final_results.get(current_language, True) and output == expected 
+                    test_result = not_so_strict_compare(output, expected)
+                    pre_final_results[current_language] = pre_final_results.get(current_language, True) and test_result
+                    if not test_result:
+                        print('\toutput = "%s"'%output, ' expected = "%s"'%expected)
                 except:
                     print('check failed')
 
-print(results)
+for t in range(4):
+    print()
+                    
+for user, results_per_user in results.items():
+    print(user)
+    for problem, stats_for_user_problem in results_per_user.items():
+        print("\t", problem)
+        for language, result in stats_for_user_problem.items():
+            print("\t\t", language, result)
             
             
