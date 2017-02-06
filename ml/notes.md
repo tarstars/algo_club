@@ -22,6 +22,8 @@
 
 [Про переобучение](http://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html)
 
+[Про матричные производные](http://www.machinelearning.ru/wiki/images/2/2a/Matrix-Gauss.pdf)
+
 
 # Занятие 1
 
