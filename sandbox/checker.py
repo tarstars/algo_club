@@ -29,6 +29,8 @@ results = {}
 
 for current_user in users:
     results[current_user] = {}
+    print()
+    print('user = ', current_user)
     for current_problem in problems:
         dat_prefix = 'dat'
         res_prefix = 'res'
@@ -95,7 +97,9 @@ for current_user in users:
                     test_result = not_so_strict_compare(output, expected)
                     pre_final_results[current_language] = pre_final_results.get(current_language, True) and test_result
                     if not test_result:
-                        print('\toutput = "%s"'%output, ' expected = "%s"'%expected)
+                        print('\tinput ="%s"\n'%open(current_dat).read(), 
+                            '\toutput = "%s"\n'%output,
+                              '\n\texpected = "%s"'%expected)
                 except Exception as ec:
                     print('check failed:', ec)
 

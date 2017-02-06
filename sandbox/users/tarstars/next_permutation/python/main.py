@@ -1,9 +1,10 @@
 def next_permutation(a):
   a = list(a)
   n = len(a)
-  for q in range(n-2, -1, -1):
-    if a[q] < a[q+1]:
-      break
+  q = n - 2
+  while q > -1 and a[q] >= a[q+1]:
+      q -= 1
+      
   if q > -1:
     for p in range(n - 1, q, -1):
       if a[p] > a[q]:
