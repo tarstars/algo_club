@@ -4,6 +4,12 @@ import glob
 import os
 import subprocess
 
+def my_run(*args, **kwargs):
+    if 'call' in subprocess.__dict__:
+        return subprocess.call(*args, **kwargs)
+    if 'run' in subprocess.__dict__:
+        return subprocess.run(*args, **kwargs)
+
 def split_by_groups(s):
     return [t for t in s.split() if t]
 
@@ -56,7 +62,9 @@ for current_user in users:
                             os.remove('prog')
                         except Exception:
                             pass
-                        subprocess.run(['g++', '-std=c++11', program_prefix + '/main.cpp', '-o', 'prog'])
+                        compile_command = ['g++', '-std=c++11', program_prefix + '/main.cpp', '-o', 'prog']
+                        print('c++: trying to compile: ', compile_command)
+                        my_run(compile_command)
                         open('prog')
                         print('c++ compilation successfull')
                         program_instance = subprocess.Popen(['./prog'],
@@ -71,7 +79,7 @@ for current_user in users:
                             pass
                         source_path = program_prefix + '/main.go'
                         print('source_path = ', source_path)
-                        subprocess.run(['go', 'build', source_path])
+                        my_run(['go', 'build', source_path])
                         program_instance = subprocess.Popen(['./main'],
                                                             stdin=subprocess.PIPE,
                                                             stdout=subprocess.PIPE,
@@ -88,8 +96,8 @@ for current_user in users:
                     pre_final_results[current_language] = pre_final_results.get(current_language, True) and test_result
                     if not test_result:
                         print('\toutput = "%s"'%output, ' expected = "%s"'%expected)
-                except:
-                    print('check failed')
+                except Exception as ec:
+                    print('check failed:', ec)
 
 for t in range(4):
     print()
