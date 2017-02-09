@@ -1,6 +1,9 @@
 # gathering info
+input_string = input()
+
+house = [int(n) for n in input_string.split(' ')]
 #house = list([5, 7, 8, 6, 8, 9, 8, 4])
-house = list(input())
+
 cash = list([]) # payday so far
 prev = list([]) # best previous house
 luckies = list([]) # house numbers start with 1, NOT 0. We're humans after all
@@ -23,12 +26,15 @@ for pp in range(len(house)):
 #print(prev)
 #print(cash)
 
-payday = max(cash[-1], cash[-2])
-
 # execution
-luckies.append(cash.index(max(cash[-1], cash[-2]))+1)
-while (prev[luckies[-1] - 1] > 0):
-    luckies.append(prev[luckies[-1] - 1])
+if (len(house) == 1):
+    luckies.append(1)
+    payday = cash
+else:
+    payday = max(cash[-1], cash[-2])
+    luckies.append(cash.index(max(cash[-1], cash[-2]))+1)
+    while (prev[luckies[-1] - 1] > 0):
+        luckies.append(prev[luckies[-1] - 1])
     
 luckies.sort()
 print(luckies)

@@ -8,6 +8,5 @@ output = 1;
 #print(b)
 
 for t in range(1,input+1):
-    print(t);
     output *= t;
 print(output)
