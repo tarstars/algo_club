@@ -37,7 +37,7 @@ else:
         luckies.append(prev[luckies[-1] - 1])
     
 luckies.sort()
-print(luckies)
+print(' '.join(str( t ) for t in luckies))
 
 # queue the music
 print(payday)
