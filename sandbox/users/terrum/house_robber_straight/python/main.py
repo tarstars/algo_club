@@ -28,8 +28,9 @@ for pp in range(len(house)):
 
 # execution
 if (len(house) == 1):
+    payday = cash[0]
     luckies.append(1)
-    payday = cash
+    
 else:
     payday = max(cash[-1], cash[-2])
     luckies.append(cash.index(max(cash[-1], cash[-2]))+1)
@@ -37,7 +38,7 @@ else:
         luckies.append(prev[luckies[-1] - 1])
     
 luckies.sort()
-print(' '.join(str( t ) for t in luckies))
+print(' '.join(str(qq) for qq in luckies))
 
 # queue the music
 print(payday)
