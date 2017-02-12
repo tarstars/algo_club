@@ -75,11 +75,23 @@
 
 * Деревья
   * Различные обходы бинарного дерева
-    * inorder, postorder, ...
+    * preorder, inorder, postorder, level-by-level
   * Стандартные задачи:
-  * Обойти в указанном порядке
-  * Восстановить дерево по элементам, полученным из обхода
-  * Найти число
+    * Обойти в указанном порядке
+    * Восстановить дерево по элементам, полученным из обхода
+    * Найти число
+    * Проверить, является ли данное дерево деревом поиска
+  * Именные деревья:
+    * Fenwick tree:
+      * To read:
+        * https://sanugupta.wordpress.com/2014/08/29/binary-indexed-tree-fenwick-tree/
+      * To solve:
+        * http://www.spoj.com/problems/CTRICK/
+        * https://www.quora.com/CodeChef-What-are-some-suggestions-for-problems-where-Binary-Indexed-Tree-BIT-Fenwick-Tree-is-the-primary-concept
+        * https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
+    * Деревья отрезков
+    * Дуча (курево)
+  
 
 * Разное:
  * конечные автоматы
