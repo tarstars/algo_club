@@ -24,6 +24,8 @@
 
 [Про матричные производные](http://www.machinelearning.ru/wiki/images/2/2a/Matrix-Gauss.pdf)
 
+[scipy](https://docs.scipy.org/doc/numpy/contents.html)
+
 
 # Занятие 1
 
