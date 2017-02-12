@@ -14,8 +14,9 @@
 
 ```python
 for t in range(5):
-    print (t)```
-    
+    print (t)
+``` 
+
 ```python
 s=0
 ind = 0
