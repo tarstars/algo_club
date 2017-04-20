@@ -4,6 +4,8 @@ class Matrix(object):
     def __init__(self, dat):
         if type(dat) == list and type(dat[0]) == list:
             self.dat = dat
+        elif type(dat) == list:
+            self.dat = [[t] for t in dat]
 
     def width(self):
         return len(self.dat[0])
@@ -21,6 +23,13 @@ class TestMatrix(unittest.TestCase):
         self.assertEqual(mat.height(), 3)
         self.assertEqual(mat.width(), 2)
         self.assertEqual(mat.get(2, 1), 32)
+
+    def test_vector_init(self):
+        lst = [1, 2, 10, 15]
+        mat = Matrix(lst)
+        self.assertEqual(mat.height(), len(lst))
+        self.assertEqual(mat.width(), 1)
+        self.assertEqual(mat.get(2, 0), 10)
 
 if __name__ == '__main__':
     unittest.main()
