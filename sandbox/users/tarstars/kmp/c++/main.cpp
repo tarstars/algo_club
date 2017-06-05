@@ -27,14 +27,14 @@ ApplyKMP(const KMPDescription& desc,
   std::vector<int> res;
   for (size_t ind = 0; ind < s.size(); ++ind) {
     while (pos >= 0 && desc.pat[pos] != s[ind]) {
-      pos = desc.pat[pos];
+      pos = desc.f[pos];
     }
     ++pos;
     if (pos == desc.pat.size()) {
       --pos;
       res.push_back(ind - desc.pat.size() + 1);
       while (pos >= 0 && desc.pat[pos] != s[ind]) {
-        pos = desc.pat[pos];
+        pos = desc.f[pos];
       }
     }
   }
