@@ -94,7 +94,7 @@ class TestFullKMP(unittest.TestCase):
         self.assertEqual(apply_kmp(pat, f, 'abacabaqwrefastrtadfasabacaba'), [0, 22])
         self.assertEqual(apply_kmp(pat, f, 'qwrefaabacabastrtadfas'), [6])
         self.assertEqual(apply_kmp(pat, f, 'qwreabacabafastabacabartadabacabafas'), [4, 15, 26])
-        self.assertEqual(apply_kmp(pat, f, 'qwrabacabaabacabaabacabaefastrtadfas'), [])
+        self.assertEqual(apply_kmp(pat, f, 'qwrabacabaabacabaabacabaefastrtadfas'), [3, 4, 17])
         
         
 if __name__ == '__main__':
