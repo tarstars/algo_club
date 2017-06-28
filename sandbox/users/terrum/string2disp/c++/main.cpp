@@ -1,6 +1,7 @@
 //Currently now working with established input and output format because I'm a lazy bastard.
 
 #include <iostream>
+#include <cstring>
 #include <math.h>
 
 using namespace std;
@@ -10,7 +11,7 @@ char paintRectangle(char thestring[], int ws, int xl, int yl, int wr, int hr, in
 char paintPixel(char thestring[], int ws, int xp, int yp, int type); // paint just one specific pixel
 char paintChunk(char thestring[], int ws, int xst, int yst, int wr, int type); // paint one chunk one given row
 
-void main()
+int main()
 {
 	char c[] = "fnasjf0igju93mrfkj=a]klf20"; // string in question
 	int sz;
