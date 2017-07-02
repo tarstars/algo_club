@@ -37,6 +37,8 @@ def shortest(nums):
         if nums[rb] <= rest_max:
             break
 
+    if nums[0] > nums[1] and nums[-2] > nums[-1]:
+        return len(nums)
 
     ret = rb - lb
 
@@ -73,6 +75,10 @@ class TestShortestSort(unittest.TestCase):
 
     def test_many_05(self):
         self.assertEqual(shortest([1, 2, 3, 4, 5, 6, 7, 8, 10, 9]), 2)
+
+    def test_many_06(self):
+        self.assertEqual(shortest([5, 4, 3, 2, 1]), 5)
+
 
 if __name__ == '__main__':
     unittest.main()
