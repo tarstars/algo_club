@@ -18,6 +18,10 @@ class Matrix(object):
     def shape_init(cls, h, w):
         return cls([[0]*w for _ in range(h)])
 
+    @classmethod
+    def matrix_like_init(cls, ml_dat):
+        return cls([list(t) for t in ml_dat])
+
     def __repr__(self):
         return "Matrix({!r})".format(self.dat)            
             
@@ -29,6 +33,17 @@ class Matrix(object):
 
     def get(self, p, q):
         return self.dat[p][q]
+
+    def set(self, p, q, val):
+        self.dat[p][q] = val
+
+    def transpose(self):
+        h, w = self.height(), self.width()
+        result = Matrix.shape_init(w, h)
+        for p in range(h):
+            for q in range(w):
+                result.set(q, p, self.get(p, q))
+        return result
 
     def __mul__(self, r):
         res = Matrix.shape_init(len(self.dat), len(r.dat[0]))
@@ -42,6 +57,25 @@ class Matrix(object):
 
     def __eq__(self, other):
         return self.dat == other.dat
+
+    def almost_equal(self, other):
+        if (self.width() != other.width() or
+            self.height() != other.height()):
+            return False
+
+        w = self.width()
+        h = self.height()
+
+        s = 0
+        for p in range(h):
+            for q in range(w):
+                d = self.get(p, q) - other.get(p, q)
+                s += d**2
+
+        return s < 1e-10
+
+    def first_column_to_list(self):
+        return [t[0] for t in self.dat]
 
     
 class TestMatrix(unittest.TestCase):
