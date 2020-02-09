@@ -7,45 +7,28 @@ def shortest(nums):
     if len(nums) < 2:
         return 0
 
-    # left boundary
-    l = None
-    for l in range(len(nums)):
-        if l < len(nums) - 1 and nums[l] > nums[l + 1]:
-            break
+    # left to right
+    maxv = nums[0]
+    right_best = 0
+    for ind in range(1, len(nums)):
+        if maxv > nums[ind]:
+            right_best = ind
+        else:
+            maxv = nums[ind]
 
-    if l == len(nums) - 1:
+    if right_best == 0:
         return 0
-        
-    rest_min = min(nums[l + 1:])
 
-    lb = None
-    for lb in range(l, -1, -1):
-        if nums[lb] <= rest_min:
-            break
+    # right to left
+    minv = nums[-1]
+    left_best = len(nums) - 1
+    for ind in range(len(nums) - 1, -1, -1):
+        if minv < nums[ind]:
+            left_best = ind
+        else:
+            minv = nums[ind]
 
-    # right boundary
-    r = None
-    for r in range(len(nums) - 1, 0, -1):
-        if nums[r - 1] > nums[r]:
-            break
-
-
-    rest_max = max(nums[:r])
-
-    rb = None
-    for rb in range(len(nums) - 1, r - 1, -1):
-        if nums[rb] <= rest_max:
-            break
-
-    if nums[0] > nums[1] and nums[-2] > nums[-1]:
-        return len(nums)
-
-    ret = rb - lb
-
-    if ret < 2:
-        ret = 2
-
-    return ret
+    return right_best - left_best + 1
 
 
 class TestShortestSort(unittest.TestCase):
@@ -78,6 +61,12 @@ class TestShortestSort(unittest.TestCase):
 
     def test_many_06(self):
         self.assertEqual(shortest([5, 4, 3, 2, 1]), 5)
+
+    def test_many_07(self):
+        self.assertEqual(shortest([2, 3, 2, 3, 3, 3]), 2)
+
+    def test_many_08(self):
+        self.assertEqual(shortest([1, 3, 2, 3, 3]), 2)
 
 
 if __name__ == '__main__':
