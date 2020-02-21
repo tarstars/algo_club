@@ -37,3 +37,18 @@ Hometask:
   * first-player-win and second-player-win
   * take-away pencils game with 1-2-3 pencils to take
   
+# 2020-01-14
+## Medium
+
+Four ways to determine the binomial coefficients
+* Algebraic: n! / (k! * (n - k)!)
+* Recurrent: c(n, 0) = c(n, n) = 1; c(n, k) = c(n - 1, k - 1) + c(n - 1, k) {Pascal's triangle}
+* Combinatoric: number of ways to peek k elements from n objects
+* Expansion of (1 + x) ^ n expression as sum(k, 0, n, x^k * c(n, k))
+
+
+There are 12 corollaries between these 4 points.
+
+Problem: print out one line of Pascal's triangle
+
+Cat and mouse.
