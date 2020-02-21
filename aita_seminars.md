@@ -1,4 +1,4 @@
-# 2020-01-07
+# 2020-02-07
 ## Easy
 
 * swap values of the two variables a and b
@@ -37,7 +37,7 @@ Hometask:
   * first-player-win and second-player-win
   * take-away pencils game with 1-2-3 pencils to take
   
-# 2020-01-14
+# 2020-02-14
 ## Medium
 
 Four ways to determine the binomial coefficients
@@ -57,3 +57,9 @@ Problems:
 
 
 Cat and mouse.
+
+# 2020-02-21
+## Practice
+
+* write test for stack with maximum
+* access to algo_club
