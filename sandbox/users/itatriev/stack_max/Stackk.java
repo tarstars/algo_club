@@ -4,7 +4,7 @@ public class Stackk {
     
     private int[] arr;
     private int[] maxArr;
-    private int head = -1;
+    private int head;
     private int maxSize;
     private int size;
 
@@ -12,6 +12,8 @@ public class Stackk {
         this.maxSize = maxSize;
         arr = new int[maxSize];
         maxArr = new int[maxSize];
+	head = -1;
+	size = 0;
     }
 
     public void push(final int num) {
@@ -27,6 +29,10 @@ public class Stackk {
 
     public int peekMax() {
         return maxArr[head];
+    }
+
+    public int peek() {
+	return arr[head];
     }
 
     public int size() {
