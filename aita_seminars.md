@@ -49,6 +49,11 @@ Four ways to determine the binomial coefficients
 
 There are 12 corollaries between these 4 points.
 
-Problem: print out one line of Pascal's triangle
+Problems: 
+* print out one line of Pascal's triangle
+* whether it is possible to construct queue using stacks objects ?
+* construct stack with quick access to the maximal element in stack
+* construct queue with quick access to the maximal element in queue
+
 
 Cat and mouse.
