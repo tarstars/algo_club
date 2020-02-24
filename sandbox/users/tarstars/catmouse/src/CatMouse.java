@@ -1,4 +1,8 @@
-import java.util.*;
+import java.util.Objects;
+import java.util.HashMap;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Map;
 
 class CatMouse {
   static final class Position {
