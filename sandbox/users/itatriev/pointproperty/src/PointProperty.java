@@ -28,5 +28,23 @@ public class PointProperty<T> {
             this.x = x;
             this.y = y;
         }
+
+        @Override
+        public int hashCode() {
+            int result = x;
+            result = 31 * result + y;
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == null) {
+                return false;
+            }
+            if (!(o instanceof Point)) {
+                return false;
+            }
+            return (x == ((Point) o).x && y == ((Point) o).y);
+        }
     }
 }
