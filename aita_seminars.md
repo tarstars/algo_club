@@ -63,3 +63,11 @@ Cat and mouse.
 
 * write test for stack with maximum
 * access to algo_club
+* queue with quick access to the maximal element
+
+# 2020-02-28
+## Practice
+
+* different implementations of printing one line of Pascals triangle
+* several values as a key of HashMap
+* kill the cat and the mouse!
