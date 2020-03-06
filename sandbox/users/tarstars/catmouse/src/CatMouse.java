@@ -41,6 +41,14 @@ class CatMouse {
         }
     }
 
+    static final class NeiStat {
+        public int[] neiVals;
+
+        public NeiStat() {
+            neiVals = new int[3];
+        }
+    }
+
     void testPosition() {
         Position pos1 = new Position(1, 2, 3);
 
@@ -71,6 +79,7 @@ class CatMouse {
         int n = graph.length;
         Map<Position, List<Position>> backTrack = new HashMap<>();
         Map<Position, Integer> score = new HashMap<>();
+        Map<Position, NeiStat> nei = new HashMap<>();
 
         for (int p = 1; p < n; ++p) {
             for (int q = 0; q < n; ++q) {
@@ -87,6 +96,13 @@ class CatMouse {
                             }
                             affectedPositions.add(alpha);
                             backTrack.put(beta, affectedPositions);
+
+                            NeiStat ns = nei.get(alpha);
+                            if (ns == null) {
+                                ns = new NeiStat();
+                                nei.put(alpha, ns);
+                            }
+                            ++ns.neiVals[1];
                         }
                     }
                 }
