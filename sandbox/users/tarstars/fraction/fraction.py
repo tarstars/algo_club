@@ -14,9 +14,6 @@ def fraction_string(n: int) -> str:
     def f(r):
         return (r * 10) % n
 
-    def d(r):
-        return str((r * 10) // n)
-
     a = 1
 
     a = f(a)
@@ -29,16 +26,16 @@ def fraction_string(n: int) -> str:
     c = 1
     buf.write('0.')
     while b != c:
-        buf.write(d(c))
+        buf.write(str((c * 10) // n))
         c = f(c)
         b = f(f(b))
 
     buf.write('(')
-    buf.write(d(c))
+    buf.write(str((c * 10) // n))
 
     c = f(c)
     while b != c:
-        buf.write(d(c))
+        buf.write(str((c * 10) // n))
         c = f(c)
     buf.write(')')
 
