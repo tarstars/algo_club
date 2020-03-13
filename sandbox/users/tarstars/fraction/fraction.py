@@ -2,18 +2,16 @@ import io
 import unittest
 
 
-def frying_pan(initial_value, step, process_value):
+def frying_pan(initial_value, step, accumulator):
     """Solves problem of determination of period and non-period parts of the sequence
     initial_value, step(initial_value), step(step(initial_value)), ...
 
     :param initial_value: first element in the sequence
     :param step: function that moves us toward in sequence
-    :param process_value: callable object that gathers information
+    :param accumulator: callable object that gathers information
     :return:
     """
-    a = initial_value
-
-    a = step(a)
+    a = step(initial_value)
     b = step(a)
 
     while a != b:
@@ -21,20 +19,20 @@ def frying_pan(initial_value, step, process_value):
         b = step(step(b))
 
     c = initial_value
-    process_value.start()
+    accumulator.start()
     while b != c:
-        process_value(c)
+        accumulator.process_value(c)
         c = step(c)
         b = step(b)
 
-    process_value.begin_period()
-    process_value(c)
+    accumulator.begin_period()
+    accumulator.process_value(c)
 
     c = step(c)
     while b != c:
-        process_value(c)
+        accumulator.process_value(c)
         c = step(c)
-    process_value.finish()
+    accumulator.finish()
 
 
 class StringAccumulator:
@@ -45,7 +43,7 @@ class StringAccumulator:
         self.buf = io.StringIO()
         self.digit_extractor = digit_extractor
 
-    def __call__(self, val):
+    def process_value(self, val):
         self.buf.write(str(self.digit_extractor(val)))
 
     def start(self):
@@ -76,7 +74,7 @@ def fraction_string(n: int) -> str:
         return str((r * 10) // n)
 
     string_accumulator = StringAccumulator(digit_extractor=current_digit)
-    frying_pan(initial_value=1, step=next_reminder, process_value=string_accumulator)
+    frying_pan(initial_value=1, step=next_reminder, accumulator=string_accumulator)
 
     return string_accumulator.getvalue()
 
