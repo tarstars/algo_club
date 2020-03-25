@@ -3,11 +3,18 @@ import unittest
 import random
 import sys
 import time
+from typing import List, Union, Tuple
 
 sys.setrecursionlimit(10000)
 
 
-def non_uniform(r):
+def non_uniform(r: float):
+    """
+    Converts uniformly distributed in range (0, 1) random number into map cell.
+    0 stands for empty space
+    1 for the wall
+    and 2 for a cookie 
+    """
     if r < 0.6:
         return 0
     if r < 0.61:
@@ -15,26 +22,35 @@ def non_uniform(r):
     return 2
 
 
-def generate_map(h, w, seed=100500):
+def generate_map(h: int, w: int, seed: int = 100500):
+    """
+    Generates random maps
+    """
     random.seed(seed)
     s = [['.', '#', '*'][ind] for ind in (non_uniform(random.random()) for _ in range(h * w))]
     return tuple([''.join(s[ind * w: (ind + 1) * w]) for ind in range(h)])
 
 
 @functools.lru_cache(10 ** 9)
-def gather_cookies_helper(maze, p, q):
+def gather_cookies_helper(maze: List[str], p: int, q: int):
+    """
+    Solves the problem using the recurrent definition of function and lru_cache
+    :param maze: describes a maze
+    :param p: vertical coordinate
+    :param q: horizontal coordinate
+    """
     if maze[p][q] == '#':
         return None
 
     if p - 1 < 0 or maze[p - 1][q] == '#':
-        u = None
+        up = None
     else:
-        u = gather_cookies_helper(maze, p - 1, q)
+        up = gather_cookies_helper(maze, p - 1, q)
 
     if q - 1 < 0 or maze[p][1 - 1] == '#':
-        l = None
+        left = None
     else:
-        l = gather_cookies_helper(maze, p, q - 1)
+        left = gather_cookies_helper(maze, p, q - 1)
 
     result = 1
 
@@ -44,31 +60,48 @@ def gather_cookies_helper(maze, p, q):
     if not p and not q:
         return result
 
-    if u is None and l is None:
+    if up is None and left is None:
         return None
 
-    if l is None:
-        return result + u
+    if left is None:
+        return result + up
 
-    if u is None:
-        return result + l
+    if up is None:
+        return result + left
 
-    return result + max(u, l)
+    return result + max(up, left)
 
 
-def gather_cookies_recursion(maze):
+def gather_cookies_recursion(maze: Union[List[str, ...], Tuple[str, ...]]):
+    """
+    Solves the problem for the given maze. The problem is: what is the maximal number of cookies that
+    can collect robot? Initial position of the robot is in the left top corner. Robot wants to reach
+    right bottom corner and can move either one step right or one step down.
+    :param maze: describes a maze
+    """
     h, w = len(maze), len(maze[0])
     return gather_cookies_helper(maze, h - 1, w - 1)
 
 
-def from_prev_val(curr_cell, prev_val):
+def from_prev_val(curr_cell: str, prev_val: int):
+    """
+    Determines what will we have after visiting current cell.
+    :param curr_cell: a description of current cell. '#' - a wall, '*' - a cookie, '.' - a passage
+    :param prev_val: score from the previous step
+    :return: score after visit of current room
+    """
     if curr_cell == '#' or prev_val is None:
         return None
 
     return prev_val + (1 if curr_cell == '*' else 0)
 
 
-def gather_cookies(maze):
+def gather_cookies(maze: List[str]) -> Union[int, None]:
+    """
+    Solves the problem. The problem described in docstring of gather_cookies_recursion
+    :param maze: a maze description
+    :return: number of cookies
+    """
     if maze[0][0] == '#':
         return None
 
@@ -95,48 +128,52 @@ def gather_cookies(maze):
 
 
 class TestMaze(unittest.TestCase):
+    """
+    Tests for the maze solver
+    """
+
     def setUp(self) -> None:
         self.maze_00 = (
             ('...',
              '...',
-             '...')
-            , 0)  # no walls, no cookies
+             '...'),
+            0)  # no walls, no cookies
 
         self.maze_01 = (
             ('...',
              '*.*',
-             '...')
-            , 2)  # twe reachable cookies
+             '...'),
+            2)  # twe reachable cookies
 
         self.maze_02 = (
             ('...',
              '.**',
-             '.*.')  # there are three of them, but you can reach only one
-            , 2)
+             '.*.'),  # there are three of them, but you can reach only one
+            2)
 
         self.maze_03 = (
             ('...',
              '...',
-             '..*')  # at the last point
-            , 1)
+             '..*'),  # at the last point
+            1)
 
         self.maze_04 = (
             ('*..',
              '...',
-             '...')  # at the first point
-            , 1)
+             '...'),  # at the first point
+            1)
 
         self.maze_05 = (
             ('...',
              '.##',
-             '.#.')  # exit unreachable
-            , None)
+             '.#.'),  # exit unreachable
+            None)
 
         self.maze_06 = (
             ('...',
              '#..',
-             '*..')  # unreachable cookie behind the wall
-            , 0)
+             '*..'),  # unreachable cookie behind the wall
+            0)
 
     def test_all_mazes(self):
         maze_list = [
@@ -155,6 +192,8 @@ class TestMaze(unittest.TestCase):
 
 if __name__ == '__main__':
     # unittest.main()
+    """ Compare different implementations of our algorithm
+    """
     m = generate_map(200, 200, 17)
     start = time.time()
     c1 = gather_cookies_recursion(m)
