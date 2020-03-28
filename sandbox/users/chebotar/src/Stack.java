@@ -1,13 +1,21 @@
 class Stack {
 
-    final int[] array;
-    final int[] arrayMax;
-    int pushIndex = 0;
-    int pushIndexMax = 0;
+    private final int[] array;
+    private final int[] arrayMax;
+    private int pushIndex = 0;
+    private int pushIndexMax = 0;
 
     public Stack(final int maxSize) {
         array = new int[maxSize];
         arrayMax = new int[maxSize];
+    }
+
+    public Stack(final int maxSize, final int... values) {
+        array = new int[maxSize];
+        arrayMax = new int[maxSize];
+        for (int value : values) {
+            push(value);
+        }
     }
 
     public int size() {
@@ -73,17 +81,20 @@ class Stack {
     private String partiallyToString(int[] a, int index) {
         if (a == null)
             return "null";
-        int iMax = a.length - 1;
-        if (iMax == -1)
+        if (index == 0)
             return "[]";
-
-        StringBuilder b = new StringBuilder();
-        b.append('[');
-        b.append(a[0]);
+        final StringBuilder builder = new StringBuilder()
+                .append('[')
+                .append(a[0]);
         for (int i = 1; i < index; i++) {
-            b.append(", ");
-            b.append(a[i]);
+            builder.append(", ")
+                    .append(a[i]);
         }
-        return b.append(']').toString();
+        return builder.append(']').toString();
+    }
+
+    public void clear() {
+        pushIndex = 0;
+        pushIndexMax = 0;
     }
 }
