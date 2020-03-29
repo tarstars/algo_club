@@ -29,13 +29,13 @@ class Stack {
         return array[pushIndex - 1];
     }
 
-    public void push(int i) {
+    public void push(int element) {
         if (pushIndex == array.length) {
             throw new RuntimeException("stack overflow =)");
         }
-        array[pushIndex] = i;
-        if (pushIndexMax == 0 || max() <= i) {
-            pushMax(i);
+        array[pushIndex] = element;
+        if (pushIndexMax == 0 || max() <= element) {
+            pushMax(element);
         }
         pushIndex++;
     }
