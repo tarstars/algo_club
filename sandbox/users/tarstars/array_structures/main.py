@@ -3,7 +3,7 @@ import unittest
 
 class Stack:
     def __init__(self, n_max):
-        self.array = [0] * n_max
+        self.array = [(0, 0)] * n_max
         self.p = -1
 
     def push(self, val):

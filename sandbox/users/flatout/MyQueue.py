@@ -8,18 +8,7 @@ class MyQueue:
         self.stack1 = Stack(n_max)
         self.stack2 = Stack(n_max)
 
-
     def push(self, val):
-        # if self.p + 1 >= len(self.array):
-        #     raise RuntimeError('out of range')
-        #
-        # max_val = val
-        # if self.p >= 0 and max_val < self.array[self.p][1]:
-        #     max_val = self.array[self.p][1]
-        #
-        # self.p += 1
-        # self.array[self.p] = (val, max_val)
-
         self.stack1.push(val)
 
     def peek(self):
@@ -35,14 +24,7 @@ class MyQueue:
             element = self.stack1.pop()
             self.stack2.push(element)
 
-
     def pop(self):
-        # if self.p < 0:
-        #     raise RuntimeError('out of range')
-        #
-        # self.p -= 1
-        # return self.array[self.p + 1][0]
-
         if self.stack2.size() > 0:
             return self.stack2.pop()
 
