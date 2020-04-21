@@ -52,7 +52,7 @@ int main() {
 
   int result_item = 0;
   printf("Multiplication of matrixes is:\n");
-  for (int p = 0; p < h1; ++p) { // w2 != h1
+  for (int p = 0; p < h1; ++p) { // Any variant: w2 == h1 or w2 != h1
     for (int q = 0; q < w2; ++q) {  // h2 == w1
        for (int r = 0; r < w1; r++){
             result_item += p1[p*w1 + r] * p2[r*w2 + q];
