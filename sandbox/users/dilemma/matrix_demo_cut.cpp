@@ -56,7 +56,8 @@ int main(){
     std::cout << "First Matrix => " << std::endl;
 
     int p, q, v;
-    while (std::cin >> p >> q >> v) {
+    while (p < h1 && q < w1) {
+        std::cin >> p >> q >> v;
         a.set(p, q, v);
     }
     std::cout << std::endl;
@@ -70,7 +71,8 @@ int main(){
     }
 
     std::cout << "Second Matrix => " << std::endl;
-    while (std::cin >> p >> q >> v) {
+    while (p < h2 && q < w2) {
+        std::cin >> p >> q >> v;
         b.set(p, q, v);
     }
     std::cout << std::endl;
