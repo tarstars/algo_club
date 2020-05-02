@@ -1,0 +1,11 @@
+CC=g++
+CFLAGS=-w -o
+
+all: matrix_demo
+	$(CC) ./matrix_demo_cut.cpp $(CFLAGS) matrix_demo
+
+matrix_demo:
+	echo './matrix_demo'
+
+clean:
+	rm -r *.o temp
