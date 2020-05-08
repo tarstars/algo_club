@@ -7,24 +7,20 @@ class Stack:
         self.p = 0
 
     def push(self, val):
-        if self.p >= len(self.array) + 1:
+        if self.p >= len(self.array):
             raise RuntimeError('Out of range')
 
-        if self.p == 0:
-            self.array[self.p] = [val, val]
-            self.p += 1
-        else:
-            if self.array[self.p - 1][0] < val:
-                self.array[self.p][1] = val
-            else:
-                self.array[self.p][1] = self.array[self.p-1][1]
-            self.array[self.p][0] = val
-            self.p += 1
+        max_val = val
+        if self.p > 0 and max_val < self.array[self.p-1][1]:
+            max_val = self.array[self.p-1][1]
+
+        self.array[self.p] = [val, max_val]
+        self.p += 1
 
     def peek(self):
         if self.p == 0:
             raise RuntimeError('stack is empty')
-        return self.array[self.p-1][0]
+        return self.array[self.p - 1][0]
 
     def pop(self):
         if self.p == 0:
@@ -36,7 +32,7 @@ class Stack:
         return self.p
 
     def max(self):
-        return self.array[self.p-1][0]
+        return self.array[self.p - 1][1]
 
 
 class TestStack(unittest.TestCase):
