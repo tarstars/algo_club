@@ -1,5 +1,6 @@
 str = " mother was washing a window "
 
+
 def reverse(mutable, start, end):
     p = start
     q = end
@@ -7,6 +8,7 @@ def reverse(mutable, start, end):
         mutable[p], mutable[q] = mutable[q], mutable[p]
         p += 1
         q -= 1
+
 
 def reverseWords(s):
     mutable = list(s)
@@ -21,5 +23,6 @@ def reverseWords(s):
 
     reverse(mutable, 0, len(s)-1)
     return ''.join(mutable)
+
 
 print(reverseWords(str))
