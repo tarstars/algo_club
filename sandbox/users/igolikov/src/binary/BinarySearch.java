@@ -1,30 +1,72 @@
 package binary;
 
-import java.util.Arrays;
-
-import static java.util.Arrays.copyOfRange;
-
 public class BinarySearch {
     public static int binaryIndexSearch(int[] sorted, int elem) {
-        int boundIndex = sorted.length / 2;
-        if (elem < sorted[0] || elem > sorted[sorted.length - 1]) {
+        return binaryIndexSearch(new IntSlice(sorted), elem);
+    }
+
+    public static int binaryIndexSearch(IntSlice sorted, int elem) {
+        int boundIndex = (sorted.length() / 2) + sorted.getStartIndex();
+        if (elem < sorted.get(sorted.getStartIndex()) || elem > sorted.get(sorted.getEndIndex())) {
             throw new IllegalArgumentException();
         }
-        if (elem == sorted[boundIndex]) {
+        if (elem == sorted.get(boundIndex)) {
             return boundIndex;
         }
-        if (elem > sorted[boundIndex]) {
-            return boundIndex + binaryIndexSearch(copyOfRange(sorted, boundIndex, sorted.length), elem);
+
+        if (elem > sorted.get(boundIndex)) {
+            sorted.setIndices(boundIndex, sorted.getEndIndex());
         } else {
-            int[] newArray = Arrays.copyOfRange(sorted, 0, boundIndex);
-            return boundIndex - newArray.length + binaryIndexSearch(newArray, elem);
+            sorted.setIndices(sorted.getStartIndex(), boundIndex - 1);
         }
+
+        return binaryIndexSearch(sorted, elem);
     }
 
     public static void main(String[] args) {
         int[] array = new int[]{-23, -4, 0, 1, 2, 5, 7, 9, 34, 123};
-        int elem = 0;
-        System.out.println(binaryIndexSearch(array, elem));
+        for (int elem : array) {
+            System.out.println(binaryIndexSearch(array, elem));
+        }
 
+        int elem = -50;
+        try {
+            binaryIndexSearch(array, elem);
+        } catch (IllegalArgumentException ex) {
+            System.out.printf("Illegal argument %d", elem);
+        }
+    }
+
+    private static class IntSlice {
+        private int[] arr;
+        private int startIndex;
+        private int endIndex;
+
+        public IntSlice(int[] arr) {
+            this.arr = arr;
+            this.startIndex = 0;
+            this.endIndex = arr.length - 1;
+        }
+
+        public void setIndices(int startIndex, int endIndex) {
+            this.startIndex = startIndex;
+            this.endIndex = endIndex;
+        }
+
+        public int length() {
+            return endIndex - startIndex + 1;
+        }
+
+        public int get(int index) {
+            return arr[index];
+        }
+
+        public int getStartIndex() {
+            return startIndex;
+        }
+
+        public int getEndIndex() {
+            return endIndex;
+        }
     }
 }
