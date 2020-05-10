@@ -37,7 +37,7 @@ public class BinarySearch {
         }
     }
 
-    private static class IntSlice {
+    public static class IntSlice {
         private int[] arr;
         private int startIndex;
         private int endIndex;
