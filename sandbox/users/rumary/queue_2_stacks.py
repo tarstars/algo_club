@@ -30,6 +30,8 @@ class Queue:
     def max(self):
         if self.stack_pop.size() == 0:
             return self.stack_push.max()
+        if self.stack_push.size() == 0:
+            return self.stack_pop.max()
         else:
             return max(self.stack_pop.max(), self.stack_push.max())
 
@@ -38,17 +40,18 @@ class TestQueue(unittest.TestCase):
     def test_queue_00(self):
         s = Queue(10)
         s.enqueue(-1)
-        print s.max()
-        self.assertEqual(-1, s.max())
+        s.enqueue(-2)
+        s.dequeue()
+        self.assertEqual(-2, s.max())
         self.assertEqual(1, s.size())
         s.enqueue(8)
-        self.assertEqual(-1, s.peek())
+        self.assertEqual(-2, s.peek())
         self.assertEqual(2, s.size())
         self.assertEqual(8, s.max())
         s.enqueue(5)
-        self.assertEqual(-1, s.peek())
+        self.assertEqual(-2, s.peek())
         self.assertEqual(3, s.size())
-        self.assertEqual(-1, s.dequeue())
+        self.assertEqual(-2, s.dequeue())
         self.assertEqual(2, s.size())
         self.assertEqual(8, s.peek())
         self.assertEqual(8, s.max())
