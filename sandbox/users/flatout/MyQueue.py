@@ -36,6 +36,11 @@ class MyQueue:
         return self.stack1.size() + self.stack2.size()
 
     def max(self):
+        if self.stack1.max() is None:
+            return self.stack2.max()
+        if self.stack2.max() is None:
+            return self.stack1.max()
+
         return max(self.stack1.max(), self.stack2.max())
 
 
@@ -56,6 +61,11 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(5, s.max())
         s.push(10)
         self.assertEqual(10, s.max())
+
+    def test_queue_01(self):
+        q = MyQueue(10)
+        q.push(-1)
+        self.assertEqual(-1, q.max())
 
 
 if __name__ == '__main__':

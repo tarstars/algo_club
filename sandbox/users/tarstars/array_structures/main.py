@@ -31,6 +31,8 @@ class Stack:
         return self.p + 1
 
     def max(self):
+        if self.p < 0:
+            return None
         return self.array[self.p][1]
 
 
