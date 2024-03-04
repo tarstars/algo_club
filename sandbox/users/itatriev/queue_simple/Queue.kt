@@ -9,7 +9,7 @@ class Queue(private val size: Int) {
         if (arr[r] != 0) return false // место закончилось
         
         arr[r] = num
-		r = (r + 1).mod(size)
+	r = (r + 1).mod(size)
         
         return true
     }
