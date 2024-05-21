@@ -22,4 +22,4 @@
 * 18 - 4sum: return all 4-tuples of arrays elements that sums up to target
 * 19 - remove nth element from end in linked list
 * 20 - valid parentheses
-* 21 - merge two sorted linked lists into one sorted list
+* 21 - 20240521 - merge two sorted linked lists into one sorted list
