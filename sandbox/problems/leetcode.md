@@ -21,5 +21,14 @@
 * 17 - give all strings that can be produced by pressing given phone keys
 * 18 - 4sum: return all 4-tuples of arrays elements that sums up to target
 * 19 - remove nth element from end in linked list
-* 20 - valid parentheses
+* 20 - 20240521 valid parentheses
 * 21 - 20240521 - merge two sorted linked lists into one sorted list
+* 22 - generate all combinations of valid parenthesis with given length n
+* 23 - merge k sorted lists
+* 24 - swap two adjacent nodes in linked list
+* 25 - reverse elements in k-group of linked list
+* 26 - inplace remove duplicates from sorted array
+* 27 - inplace remove element from array
+* 28 - find the index of the first occurence in a string
+* 29 - divide without division and multiplication
+* 30 - 
