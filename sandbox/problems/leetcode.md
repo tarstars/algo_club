@@ -47,4 +47,8 @@
 * 43 - multiply strings
 * 44 - wildcard matching, ? and *
 * 45 - how many jumps from 0 to n - 1, element of array is the length of possible jump
-* 
+* 46 - generate all permutations in any order
+* 47 - generate all unique permutations if elements in initial array are not unique
+* 48 - rotate square matrix 90 degrees clockwise in place
+* 49 - group anagrams together
+* 50 - x raised to the power of n, n can be negative
