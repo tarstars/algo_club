@@ -51,4 +51,13 @@
 * 47 - generate all unique permutations if elements in initial array are not unique
 * 48 - rotate square matrix 90 degrees clockwise in place
 * 49 - group anagrams together
-* 50 - x raised to the power of n, n can be negative
+* 50 - 20240527 x raised to the power of n, n can be negative
+* 51 - n queens
+* 52 - number of n queens solutions
+* 53 - subarray with maximum sum
+* 54 - spiral matrix
+* 55 - jump from the first arrays element to the last, element - maximal jump length. Whether you can reach.
+* 56 - merge intervals
+* 57 - insert interval
+* 58 - length of the last word
+* 59 - generate a matrix filled with integers in the spiral order
