@@ -61,3 +61,6 @@
 * 57 - insert interval
 * 58 - length of the last word
 * 59 - generate a matrix filled with integers in the spiral order
+* 60 - return kth permutation from ordered list of n-length permutation
+* 61 - rotate linked list k positions to the right
+* 62 - number of paths in mxn grid from left top corner to right bottom
